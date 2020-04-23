@@ -1,7 +1,11 @@
 from django import VERSION as DJANGO_VERSION
 from django.template import Library, Node, NodeList, VariableDoesNotExist
-from django.core.urlresolvers import NoReverseMatch
 from django.template.defaulttags import TemplateIfParser
+try:
+    from django.urls import NoReverseMatch
+except ImportError as e:
+    from django.core.urlresolvers import NoReverseMatch
+
 
 if DJANGO_VERSION < (1, 5):
     from django.templatetags.future import url
